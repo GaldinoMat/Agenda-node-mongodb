@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ("./snippets/head.ejs") -%>
+  <body>
+    <%- include ("./snippets/navbar.ejs") -%>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg- my-3">
+          <h1 class="text-center">Login</h1>
+          <p class="text-center lead">Login or Create an account</p>
+
+          <div class="row">
+            <div class="col-lg">
+              <h4>Create an account</h4>
+              <p>
+                If you don't have an account, please create one to access the
+                admin page
+              </p>
+              <form action="/login/register" method="POST">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %> >
+                <div class="form-group">
+                  <label for="registrationEmail">Email address</label>
+                  <input
+                  type="email"
+                  class="form-control"
+                  id="registrationEmail"
+                  placeholder="Enter email"
+                  name="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="registrationPassword">Password</label>
+                  <input
+                  type="password"
+                  class="form-control"
+                  id="registrationPassword"
+                  placeholder="Enter password"
+                  name="password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+              </form>
+            </div>
+            <div class="col-lg">
+              <h4>Login</h4>
+              <p>
+                If you already have an account, please login to access the admin
+                page
+              </p>
+              <form action="/login/approved" method="POST">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %> >
+                <div class="form-group">
+                  <label for="loginEmail">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="loginEmail"
+                    placeholder="Enter email"
+                    name="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="loginPassword">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    name="password"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+
+    <%- include ("./snippets/footer.ejs") -%>
+  </body>
+</html>

@@ -7,6 +7,8 @@ exports.checkCSRFError = (err, req, resp, next) => {
   if (err) {
     return resp.render("404");
   }
+  
+  next();
 };
 
 exports.csrfMiddleware = (req, res, next) => {
