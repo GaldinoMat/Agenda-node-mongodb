@@ -34,4 +34,4 @@ class Home {
   //#endregion
 }
 
-module.exports = HomeModel;
+module.exports = Home;
