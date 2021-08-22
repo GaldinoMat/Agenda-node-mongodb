@@ -67,7 +67,6 @@ class Login {
     // Validation functions
     // e-mail needs to be valid (contain an @ character)
     if (!validator.isEmail(this.body.email)) {
-      console.log("Email is invalid");
       this.errors.push("Invalid e-mail");
     }
     // Password needs to have between 8 and 20 characters
