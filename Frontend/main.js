@@ -1,4 +1,10 @@
-import "core-js/stable"
-import "regenerator-runtime/runtime"
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
-import "../public/assets/css/style.css"
+import Login from "../Frontend/modules/Login";
+
+const register = new Login(".registration-form");
+const login = new Login(".login-form");
+
+register.init()
+login.init()

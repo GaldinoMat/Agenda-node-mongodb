@@ -14,13 +14,13 @@
           <%- include ("./snippets/messages.ejs") -%> 
 
           <div class="row">
-            <div class="col-lg">
+            <div class="col-lg my-5">
               <h4>Create an account</h4>
               <p>
                 If you don't have an account, please create one to access the
                 admin page
               </p>
-              <form action="/login/register" method="POST">
+              <form class="registration-form" action="/login/register" method="POST">
                 <input type="hidden" name="_csrf" value=<%= csrfToken %> >
                 <div class="form-group">
                   <label for="registrationEmail">Email address</label>
@@ -45,13 +45,13 @@
                 <button type="submit" class="btn btn-primary">Register</button>
               </form>
             </div>
-            <div class="col-lg">
+            <div class="col-lg my-5">
               <h4>Login</h4>
               <p>
                 If you already have an account, please login to access the admin
                 page
               </p>
-              <form action="/login/login" method="POST">
+              <form class="login-form" action="/login/login" method="POST">
                 <input type="hidden" name="_csrf" value=<%= csrfToken %> >
                 <div class="form-group">
                   <label for="loginEmail">Email address</label>
