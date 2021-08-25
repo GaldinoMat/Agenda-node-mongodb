@@ -8,7 +8,7 @@ const path = require("path");
 const {
   globalMiddleware,
   checkCSRFError,
-  csrfMiddleware
+  csrfMiddleware,
 } = require("./src/middlewares/middleware");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -24,6 +24,7 @@ mongoose
   .connect(process.env.CONNECTIONSTRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then((result) => {
     app.emit("ready");

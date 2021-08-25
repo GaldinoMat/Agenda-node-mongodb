@@ -13,28 +13,24 @@
 
           <%- include ("./snippets/messages.ejs") %>
 
-          <div class="responsive-table">
-            <table class="table my-3">
-              <tr>
-                <td>Mateus</td>
-                <td>Galdino</td>
-                <td>123456789</td>
-                <td>mateusgaldino@hotmail.com</td>
-              </tr>
-              <tr>
-                <td>Mateus</td>
-                <td>Galdino</td>
-                <td>123456789</td>
-                <td>mateusgaldino@hotmail.com</td>
-              </tr>
-              <tr>
-                <td>Mateus</td>
-                <td>Galdino</td>
-                <td>123456789</td>
-                <td>mateusgaldino@hotmail.com</td>
-              </tr>
-            </table>
-          </div>
+          <% if (contacts.length > 0) { %>
+            <div class="responsive-table">
+              <table class="table my-3">
+                <% contacts.forEach(contact => { %>
+                <tr>
+                  <td><%= contact.name %></td>
+                  <td><%= contact.surname %></td>
+                  <td><%= contact.number %></td>
+                  <td><%= contact.email %></td>
+                  <td><a href="/contacts/index/<%= contact._id %>">Edit</a></td>
+                  <td><a class="text-danger" href="/contacts/delete/<%= contact._id %>">Remove</a></td>
+                </tr>
+                <% }) %>
+              </table>
+            </div>
+          <% } else { %>
+            <p class="text-center lead">No contacts were found. Start by adding new contacts in the "Add a contact" tab.</p>
+          <% }%>
         </div>
         <div class="col-lg-2"></div>
       </div>

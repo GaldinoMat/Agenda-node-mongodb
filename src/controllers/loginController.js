@@ -1,38 +1,38 @@
 const Login = require("../models/LoginModel");
 
-exports.index = (req, resp) => {
-  if (req.session.user) return resp.render("logged-in")
-  resp.render("login");
+exports.index = (req, res) => {
+  if (req.session.user) return res.render("logged-in");
+  res.render("login");
 };
 
-exports.register = async (req, resp) => {
+exports.register = async (req, res) => {
   try {
     // Gets new login attempt
     const login = new Login(req.body);
     // Tries to validate the new login session
     await login.register();
 
-    // Checks for errors, and if they exist, show them in flash messages, stores the session and redirects the user to previous page and
+    // Checks for errors, and if they exist, show them in flash messages, stores the session and redirects the user to previous page
     if (login.errors.length > 0) {
       req.flash("errors", login.errors);
       req.session.save(function () {
-        return resp.redirect("/login/index");
+        return res.redirect("/login/index");
       });
       return;
     }
-    // If tehre is not errors, a success flash message is stored and session is saved
+    // If there is not errors, a success flash message is stored and session is saved
     req.flash("success", "User was succesfully created");
     req.session.save(function () {
-      return resp.redirect("/login/index");
+      return res.redirect("/login/index");
     });
   } catch (error) {
     console.log(error);
     // Show 404 page if error occurs
-    return resp.render("404");
+    return res.render("404");
   }
 };
 
-exports.login = async (req, resp) => {
+exports.login = async (req, res) => {
   try {
     // Gets new login attempt
     const login = new Login(req.body);
@@ -43,7 +43,7 @@ exports.login = async (req, resp) => {
     if (login.errors.length > 0) {
       req.flash("errors", login.errors);
       req.session.save(function () {
-        return resp.redirect("/login/index");
+        return res.redirect("/login/index");
       });
       return;
     }
@@ -54,16 +54,16 @@ exports.login = async (req, resp) => {
     // Sets the session as user session
     req.session.user = login.user;
     req.session.save(function () {
-      return resp.redirect("/login/index");
+      return res.redirect("/login/index");
     });
   } catch (error) {
     console.log(error);
     // Show 404 page if error occurs
-    return resp.render("404");
+    return res.render("404");
   }
 };
 
-exports.logout = (req, resp) => {
+exports.logout = (req, res) => {
   req.session.destroy();
-  resp.redirect("/login/index");
+  res.redirect("/login/index");
 };

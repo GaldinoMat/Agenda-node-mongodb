@@ -61,6 +61,7 @@ class Login {
   async login() {
     this.validate();
 
+    // Request to find user in database
     if (this.errors.length > 0) return;
     this.user = await LoginModel.findOne({ email: this.body.email });
 
@@ -69,9 +70,10 @@ class Login {
       return;
     }
 
+    // Compares request and user password's hash
     if (!bcryptjs.compareSync(this.body.password, this.user.password)) {
       this.errors.push("Invalid password");
-      this.user = null
+      this.user = null;
       return;
     }
   }
@@ -82,9 +84,7 @@ class Login {
 
     // Validation functions
     // e-mail needs to be valid (contain an @ character)
-    if (!validator.isEmail(this.body.email)) {
-      this.errors.push("Invalid e-mail");
-    }
+    if (!validator.isEmail(this.body.email)) this.errors.push("Invalid e-mail");
     // Password needs to have between 8 and 20 characters
     if (this.body.password.length < 8 || this.body.password.length > 20)
       this.errors.push("Password needs to have between 8 and 20 characters");
